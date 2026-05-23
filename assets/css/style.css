@@ -400,6 +400,7 @@ ul {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(26, 54, 93, 0.4);
 }
+
 /* ==========================================================================
    LINE共有ボタンのデザイン
    ========================================================================== */
@@ -476,22 +477,103 @@ ul {
 
 /* スマホ（画面幅 560px 以下） */
 @media (max-width: 560px) {
+    /* --- ヘッダー・ナビゲーションのスマホ専用・上部固定レイアウト --- */
+    .header {
+        position: static; /* ヘッダー全体の固定は解除し、ロゴをスクロールで逃がします */
+        backdrop-filter: none;
+    }
+
     .header-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 0;
+        /* ★ロゴの上にメニューの帯（高約46px）が完全固定で敷かれるため、
+           ロゴが下に隠れてしまわないように上側にしっかり46px以上の余白を空けます */
+        padding: 56px 0 15px 0; 
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    /* ★【超重要修正】stickyからfixed（絶対固定）に切り替え！
+       画面の一番上にメニューの帯だけを100%残し続けます */
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98); /* 背景を白にして下の文字と重ならないように */
+        border-bottom: 1px solid #eef2f5;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 上からうっすら敷く影を少し明瞭に */
+        z-index: 9999; /* 何があっても一番手前に表示されるように数値を最大化 */
+        padding: 6px 0;
+    }
+
+    /* ボタンを横一列にきれいに等間隔で並べる設定 */
+    .nav ul {
+        display: flex;
+        justify-content: space-around; /* 均等配置 */
+        align-items: center;
+        gap: 2px;
+        padding: 0 6px; /* 横の余白を少しだけ詰めて文字溢れを防ぐ */
+    }
+
+    .nav li {
+        flex: 1; /* すべてのボタンの横幅を均等にする */
         text-align: center;
     }
-    .nav ul {
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+
+    /* メニュー内の文字リンクの調整 */
     .nav a {
-        font-size: 0.85rem;
+        display: block;
+        font-size: 0.72rem; /* スマホ画面で綺麗に収まるスマートなサイズに微調整 */
+        padding: 6px 2px;
+        color: #4a5568;
+        white-space: nowrap; /* 文字の途中での意図しない改行を防ぐ */
+    }
+
+    /* 「無料体験面談」ボタン（紺色でしっかり目立たせます） */
+    .nav .nav-btn {
+        background-color: #1a365d;
+        color: #fff !important;
+        border-radius: 4px;
+        font-weight: bold;
+        padding: 6px 2px;
+    }
+
+    .nav .nav-btn:hover {
+        background-color: #2c5282;
+    }
+
+
+    /* --- 講師紹介・指導例の並び順調整（テキスト → 画像） --- */
+    .message-box .about {
+        flex-direction: column-reverse;
+        padding-left: 0;
+    }
+    .message-box .about-caption {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    /* ★指導例（Q&A）の中身もスマホ時に縦並び＋画像が下になるようcolumn-reverseに統一 */
+    .about-presentation {
+        flex-direction: column;
+        padding-right: 0;
+    }
+    .about-image-tutor04 {
+        padding-top: 20px;
+        padding-right: 0;
+        margin: 0 auto;
+    }
+
+
+    /* --- その他のスマホ最適化調整 --- */
+    .main-content {
+        padding-bottom: 0; /* 下部余白をリセット */
     }
     .hero {
         padding: 60px 15px;
-        /* 丸みの設定（border-radius）を完全に削除しました */
     }
     .hero-content h2 {
         font-size: 1.6rem;
