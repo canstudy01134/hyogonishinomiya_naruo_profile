@@ -1,1 +1,1 @@
-URLはhttps://canstudy01134.github.io/hyogohishinomiya_naruo_profile/
+URLはhttps://canstudy01134.github.io/hyogonishinomiya_naruo_profile/
