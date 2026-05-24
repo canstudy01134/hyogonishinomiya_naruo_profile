@@ -571,7 +571,7 @@ ul {
 
     /* 指導例（Q&A）の中身もスマホ時に縦並び＋画像が下になるよう設定 */
     .about-presentation {
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding-right: 0;
     }
     .about-image-tutor04 {
